@@ -1,0 +1,9 @@
+[submodule "WaterPlantApp"]
+	path = WaterPlantApp
+	url = https://github.com/georgiPavlov/WaterPlantApp.git
+[submodule "WaterPlantOperator"]
+	path = WaterPlantOperator
+	url = https://github.com/georgiPavlov/WaterPlantOperator.git
+[submodule "WaterVue"]
+	path = WaterVue
+	url = https://github.com/georgiPavlov/WaterVue.git
