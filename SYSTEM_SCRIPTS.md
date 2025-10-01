@@ -4,7 +4,9 @@ This document describes the system management scripts available in the WaterVue 
 
 ## 📋 Available Scripts
 
-### 1. `start_complete_system.sh`
+### Complete System Scripts
+
+#### 1. `start_complete_system.sh`
 
 **Purpose**: Starts all three components of the Water Plant Automation System.
 
@@ -23,7 +25,7 @@ This document describes the system management scripts available in the WaterVue 
 
 **Output**: Displays system status, URLs, credentials, and process information.
 
-### 2. `stop_complete_system.sh`
+#### 2. `stop_complete_system.sh`
 
 **Purpose**: Stops all running services of the Water Plant Automation System.
 
@@ -41,7 +43,7 @@ This document describes the system management scripts available in the WaterVue 
 
 **Output**: Confirms all services have been stopped.
 
-### 3. `check_system_status.sh`
+#### 3. `check_system_status.sh`
 
 **Purpose**: Checks the current status of all system components.
 
@@ -59,7 +61,7 @@ This document describes the system management scripts available in the WaterVue 
 
 **Output**: Status report for each component (✅ Running or ❌ Not responding).
 
-### 4. `test_complete_integration.py`
+#### 4. `test_complete_integration.py`
 
 **Purpose**: Runs comprehensive integration tests for the complete system.
 
@@ -78,7 +80,7 @@ python3 test_complete_integration.py
 
 **Output**: Detailed test results with pass/fail status for each test.
 
-### 5. `create_production_user.py`
+#### 5. `create_production_user.py`
 
 **Purpose**: Creates or updates the production user for API authentication.
 
@@ -94,6 +96,96 @@ python3 create_production_user.py
 ```
 
 **Output**: User creation status and credentials.
+
+### App + Vue Only Scripts (Without Operator)
+
+#### 6. `start_app_vue_containers.sh`
+
+**Purpose**: Starts only WaterPlantApp and WaterVue in containers (without WaterPlantOperator).
+
+**What it does**:
+- Creates shared network for container communication
+- Builds and starts WaterPlantApp container on port 8001
+- Builds and starts WaterVue container on port 3000
+- Waits for services to be ready
+- Creates production user for authentication
+- Shows system status and access URLs
+
+**Usage**:
+```bash
+./start_app_vue_containers.sh
+```
+
+**Output**: Container status, access URLs, and credentials.
+
+#### 7. `stop_app_vue_containers.sh`
+
+**Purpose**: Stops and removes WaterPlantApp and WaterVue containers.
+
+**What it does**:
+- Stops WaterPlantApp container
+- Stops WaterVue container
+- Removes containers
+- Shows remaining containers
+
+**Usage**:
+```bash
+./stop_app_vue_containers.sh
+```
+
+**Output**: Confirmation of stopped containers.
+
+#### 8. `start_app_vue_local.sh`
+
+**Purpose**: Starts only WaterPlantApp and WaterVue as local processes (without WaterPlantOperator).
+
+**What it does**:
+- Sets up Django database if needed
+- Creates production user
+- Starts Django development server on port 8001
+- Starts Vite development server on port 3000/3001
+- Creates status check script
+- Shows comprehensive system information
+
+**Usage**:
+```bash
+./start_app_vue_local.sh
+```
+
+**Output**: Process information, access URLs, credentials, and log file locations.
+
+#### 9. `stop_app_vue_local.sh`
+
+**Purpose**: Stops all local WaterPlantApp and WaterVue processes.
+
+**What it does**:
+- Stops processes by PID files
+- Kills processes by name pattern
+- Cleans up any remaining processes
+- Shows port status
+- Provides detailed feedback
+
+**Usage**:
+```bash
+./stop_app_vue_local.sh
+```
+
+**Output**: Process stop confirmation and port status.
+
+## 🎯 When to Use Which Scripts
+
+### Complete System Scripts
+Use these when you need the full system with hardware control:
+- **Development with hardware**: When testing with actual sensors and pumps
+- **Full integration testing**: When testing all components together
+- **Production deployment**: When deploying the complete system
+
+### App + Vue Only Scripts
+Use these when you don't need hardware control:
+- **Frontend/Backend development**: When working on UI or API features
+- **Demo/testing without hardware**: When showing the system without physical devices
+- **Lightweight development**: When you want faster startup and fewer resources
+- **API testing**: When testing backend functionality without hardware dependencies
 
 ## 🔧 Script Configuration
 

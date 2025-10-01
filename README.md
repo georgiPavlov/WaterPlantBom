@@ -39,15 +39,22 @@ A complete water plant automation system consisting of three main components:
 
 ### Option 1: Containerized Deployment (Recommended)
 ```bash
-# Start all containers
+# Start all containers (including operator)
 ./start_all_containers.sh
 
 # Or start with complete system
 ./start_complete_system.sh
+
+# Or start only backend + frontend (without operator)
+./start_app_vue_containers.sh
 ```
 
-### Option 2: Manual Setup
+### Option 2: Local Development
 ```bash
+# Start only backend + frontend locally (without operator)
+./start_app_vue_local.sh
+
+# Or manual setup:
 # 1. Setup WaterPlantApp (Backend)
 cd WaterPlantApp
 ./setup.sh
@@ -58,7 +65,7 @@ cd ../WaterVue
 npm install
 npm run dev
 
-# 3. Setup WaterPlantOperator (Hardware)
+# 3. Setup WaterPlantOperator (Hardware) - Optional
 cd ../WaterPlantOperator
 pip install -r requirements.txt
 python run/main.py
@@ -78,12 +85,18 @@ Once running:
 
 ## 📋 Available Scripts
 
-### System Management
+### Complete System Management
 - `./start_all_containers.sh` - Start all components in containers
 - `./start_complete_system.sh` - Start complete system with monitoring
 - `./stop_all_containers.sh` - Stop all containers
 - `./stop_complete_system.sh` - Stop complete system
 - `./check_system_status.sh` - Check system status
+
+### App + Vue Only (Without Operator)
+- `./start_app_vue_containers.sh` - Start WaterPlantApp and WaterVue in containers
+- `./stop_app_vue_containers.sh` - Stop WaterPlantApp and WaterVue containers
+- `./start_app_vue_local.sh` - Start WaterPlantApp and WaterVue locally
+- `./stop_app_vue_local.sh` - Stop WaterPlantApp and WaterVue local processes
 
 ### Testing
 - `./test_complete_integration.py` - Run integration tests
@@ -96,6 +109,7 @@ Once running:
 - [Data Flow Architecture](DATA_FLOW_ARCHITECTURE.md)
 - [System Scripts](SYSTEM_SCRIPTS.md)
 - [Using Containerized Operator](USING_CONTAINERIZED_OPERATOR.md)
+- [App + Vue Scripts](APP_VUE_SCRIPTS.md) - Scripts for running only backend and frontend
 
 ## 🔧 Development
 
